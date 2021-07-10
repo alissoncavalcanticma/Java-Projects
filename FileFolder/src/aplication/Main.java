@@ -46,7 +46,7 @@ public class Main {
         File path = new File(strPath);
 
         System.out.println("Arquivo: " + path.getName());
-        System.out.println("Caminho: " +path.getParent());
+        System.out.println("Caminho: " + path.getParent());
 
         sc.close();
     }
