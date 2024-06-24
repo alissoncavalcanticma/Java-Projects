@@ -1,7 +1,4 @@
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -96,8 +93,15 @@ public class Main {
         System.out.println("Data 18 + 1 year: " + data18.plusYears(1).minusDays(3));
         System.out.println("Data 18 - 1 year: " + data18.minusYears(1));
 
+        //TIP Calculo entre datas
 
+        LocalDateTime data19 = LocalDateTime.parse("2024-06-26T23:03:23");
 
+        Duration dt1 = Duration.between(data18, data19);
+        Duration dt2 = Duration.between(data19, data18);
+
+        System.out.println("Duration entre data18 e data19: " + dt1.toDays());
+        System.out.println("Duration entre data19 e data18 (Negativa): " + dt2.toDays());
 
         }
 }
