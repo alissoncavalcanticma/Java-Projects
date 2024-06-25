@@ -1,18 +1,18 @@
 package entities;
 
 import entities.enums.OrderStatus;
-import java.util.Date;
+import java.time.Instant;
 
 public class Order {
     private Integer id;
-    private Date moment;
+    private Instant moment;
     private OrderStatus status;
 
     public Order(){
 
     }
 
-    public Order(Integer id, Date moment, OrderStatus status) {
+    public Order(Integer id, Instant moment, OrderStatus status) {
         this.id = id;
         this.moment = moment;
         this.status = status;
@@ -26,11 +26,11 @@ public class Order {
         this.id = id;
     }
 
-    public Date getMoment() {
+    public Instant getMoment() {
         return moment;
     }
 
-    public void setMoment(Date moment) {
+    public void setMoment(Instant moment) {
         this.moment = moment;
     }
 
