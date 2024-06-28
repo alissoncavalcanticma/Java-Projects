@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 
 //Aula trabalhando com Arquivo CSV em JAVA: https://www.youtube.com/watch?v=Y7UviY05U78
 
-public class FileReader {
+public class ReaderFile {
     public static void main(String[] args) {
 
         String path = "c:\\temp\\in.txt";
