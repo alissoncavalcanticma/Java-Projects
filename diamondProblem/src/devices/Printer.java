@@ -8,7 +8,7 @@ public class Printer extends Device{
 
     @Override
     public void processDoc(String doc){
-        System.out.println("Printer processing" + doc);
+        System.out.println("Printer processing: " + doc);
     }
 
     public void print(String doc){

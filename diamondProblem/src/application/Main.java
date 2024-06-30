@@ -11,7 +11,7 @@ public class Main {
         p.print("MyLetter");
 
         Scanner s = new Scanner("LG ScanMulti LG2598");
-        s.processoDoc("MyE-mail");
+        s.processDoc("My E-mail");
         System.out.println("Scan result: " + s.scan());
 
     }
