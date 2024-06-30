@@ -1,6 +1,7 @@
 package devices;
 
-public class Scanner extends Device {
+//TIP class Scanner extendendo superClass e implementando Interface
+public class Scanner extends Device implements IScanner {
 
     public Scanner(String serialNumber){
         super(serialNumber);
@@ -11,6 +12,7 @@ public class Scanner extends Device {
         System.out.println("Scanner processing: " + doc);
     }
 
+    @Override
     public String scan(){
         return "Scanned content";
     }
