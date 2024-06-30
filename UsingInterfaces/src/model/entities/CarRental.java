@@ -19,7 +19,7 @@ public class CarRental {
     }
 
     public LocalDateTime getStart() {
-        return start;
+        return this.start;
     }
 
     public void setStart(LocalDateTime start) {
@@ -27,7 +27,7 @@ public class CarRental {
     }
 
     public LocalDateTime getFinish() {
-        return finish;
+        return this.finish;
     }
 
     public void setFinish(LocalDateTime finish) {
@@ -35,10 +35,18 @@ public class CarRental {
     }
 
     public Vehicle getVehicle() {
-        return vehicle;
+        return this.vehicle;
     }
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public Invoice getInvoice() {
+        return this.invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }
