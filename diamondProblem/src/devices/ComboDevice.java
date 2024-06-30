@@ -1,5 +1,5 @@
 package devices;
 
-public class ComboDevice {
+public class ComboDevice extends Printer, Scanner {
 
 }
