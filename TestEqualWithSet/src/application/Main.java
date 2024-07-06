@@ -1,6 +1,9 @@
 package application;
 
-import java.util.TreeSet;
+import entities.Product;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,15 +11,15 @@ public class Main {
         // o mesmo objeto ou 2 ponteiros apontando pro mesmo lugar.
         // Caso tenha implementado o hashCode e Equals, a comparação acontece por valor, independete da instância do objeto.
 
-        Set<Product> set = new TreeSet<>();
+        Set<Product> set = new HashSet<>();
 
-        set.add
-        System.out.printf("Hello and welcome!");
+        set.add(new Product("Notebook", 1500.00));
+        set.add(new Product("TV", 1000.00));
+        set.add(new Product("Carro", 65000.00));
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Product prod = new Product("Carro", 65000.00);
+
+        System.out.println(set.contains(prod));
+
     }
 }
