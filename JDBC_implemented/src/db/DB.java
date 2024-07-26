@@ -66,7 +66,7 @@ public class DB {
         }
     }
 
-    //TIP Método para encerrar o Statement
+    //TIP Método para encerrar o ResultSet
     public static void closeResultSet(ResultSet rs){
         if(rs != null){
             try{

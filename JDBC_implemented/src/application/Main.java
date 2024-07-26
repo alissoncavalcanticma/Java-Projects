@@ -10,6 +10,45 @@ import java.text.SimpleDateFormat;
 public class Main {
     public static void main(String[] args) {
 
+        Connection conn = null;
+        PreparedStatement st = null;
+
+        try{
+            conn = DB.getConnection();
+            st = conn.prepareStatement(
+                    "UPDATE seller "
+                            + "SET BaseSalary = BaseSalary + ? "
+                            + "WHERE (DepartmentId = ?);");
+            st.setDouble(1,200.0);
+            st.setInt(2, 2);
+
+            int rowsAffected = st.executeUpdate();
+
+            System.out.println("Done! Rows affected: " + rowsAffected);
+
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally{
+            DB.closeStatement(st);
+            DB.closeConnection();
+        }
+
+
+
+
+
+
+        /******
+
+         ===================  Inserindo dados  =========================
+
+         ****** */
+
+        /*
+
+
         //Instanciando objetos de conexão
         Connection conn = null;
         PreparedStatement ps = null;
@@ -17,7 +56,7 @@ public class Main {
         //Instância usada na definição de data de ps
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        /** Bloco try  **/
+        // Bloco try
         try{
             conn = DB.getConnection();
 
@@ -30,7 +69,7 @@ public class Main {
             //Incrementando o Statement com os dados a serem inseridos
             ps.setString(1, "Alisson");
             ps.setString(2, "alisson@alisson.com");
-            ps.setDate(3, new java.sql.Date((sdf.parse("08/07/2024").getTime())));
+            ps.setDate(3, new java.sql.Date((sdf.parse("25/07/2024").getTime())));
             ps.setDouble(4, 4300.00);
             ps.setInt(5, 4);
 
@@ -59,8 +98,15 @@ public class Main {
             DB.closeStatement(ps);
         }
 
+         */
 
-        //TIP Recuperando dados
+
+
+        /******
+
+        ===================  Recuperando dados  =========================
+
+        ****** */
 
         /*
         Connection conn = null;
