@@ -1,10 +1,12 @@
 package application;
 
+import model.entities.Department;
+
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("oi");
+        Department dp = new Department(1, "TI");
+        System.out.println(dp);
 
-        }
     }
 }
