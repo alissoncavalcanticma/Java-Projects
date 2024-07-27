@@ -2,6 +2,7 @@ package application;
 
 import db.DB;
 import db.DbException;
+import db.DbIntegrityException;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -10,9 +11,60 @@ import java.text.SimpleDateFormat;
 public class Main {
     public static void main(String[] args) {
 
+        /******
+
+         ===================  Deletando dados  =========================
+
+         ****** */
+
+
+
+        //Instanciando objetos de conexão
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        //Try Block
+
+        try{
+            conn = DB.getConnection();
+            ps = conn.prepareStatement(
+                    "DELETE FROM department "
+                            + "WHERE "
+                            + "Id = ?;");
+
+            ps.setInt(1, 2);
+
+            int rowsAffected = ps.executeUpdate();
+
+            System.out.println("Done! Rows affected: " + rowsAffected);
+        }catch(SQLException e){
+           //e.printStackTrace();
+            throw new DbIntegrityException(e.getMessage());
+        }finally{
+            DB.closeConnection();
+            DB.closeStatement(ps);
+        }
+
+
+
+
+
+        /******
+
+         ===================  Atualizando dados  =========================
+
+         ****** */
+
+        /*
+
+
+        /**
+        //Instanciando objetos de conexão
         Connection conn = null;
         PreparedStatement st = null;
 
+
+        //Try Block
         try{
             conn = DB.getConnection();
             st = conn.prepareStatement(
@@ -34,7 +86,7 @@ public class Main {
             DB.closeStatement(st);
             DB.closeConnection();
         }
-
+        **/
 
 
 
