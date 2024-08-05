@@ -19,8 +19,10 @@ public class Main {
         //USANDO PADRÃO FACTORY PARA INSTANCIAR CONNECTION
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        Seller seller = sellerDao.findById(3);
 
+        //Teste findById
+        Seller seller = sellerDao.findById(3);
+        System.out.println("=== Teste findById ===");
         System.out.println(seller);
 
     }
