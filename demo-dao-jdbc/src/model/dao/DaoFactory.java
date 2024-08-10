@@ -6,6 +6,7 @@ import model.dao.impl.SellerDaoJDBC;
 
 public class DaoFactory {
 
+    //CREATE SELLERDAO FAZ USO DE INJEÇÃO DE DEPEDÊNCIA DO OBJETO DE CONEXÃO
     public static SellerDao createSellerDao(){
         return new SellerDaoJDBC(DB.getConnection());
     }
