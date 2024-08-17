@@ -21,12 +21,12 @@ public class Main {
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
 
-        //Teste findById
+        //Teste seller findById
         Seller seller = sellerDao.findById(3);
         System.out.println("=== Teste findById ===");
         System.out.println(seller);
 
-        //Teste findByDepartment
+        //Teste seller findByDepartment
         System.out.println("\n=== Teste findByDepartment ===");
         Department department = new Department(1, null);
         List<Seller> list = sellerDao.findByDepartment(department);
@@ -34,13 +34,18 @@ public class Main {
             System.out.println(obj);
         }
 
-        //Teste findAll
+        //Teste seller findAll
         System.out.println("\n=== Teste findAll ===");
         list = sellerDao.findAll();
         for(Seller obj : list){
             System.out.println(obj);
         }
 
+        //Teste seller insert
+        System.out.println("\n=== Teste insert ===");
+        Seller newSeller = new Seller(null, "TestInsert", "test.insert@gmail.com", new Date(), 7018.85, department);
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted! New id = " + newSeller.getId());
 
     }
 }
