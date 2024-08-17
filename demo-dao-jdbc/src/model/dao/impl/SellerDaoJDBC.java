@@ -39,9 +39,11 @@ public class SellerDaoJDBC implements SellerDao {
 
             if(rowsAffected > 0){
                 ResultSet rs = st.getGeneratedKeys();
-                int id = rs.getInt(1);
-                //Preencher o objeto existente com id
-                obj.setId(id);
+                if(rs.next()){
+                    int id = rs.getInt(1);
+                    //Preencher o objeto existente com id
+                    obj.setId(id);
+                }
                 DB.closeResultSet(rs);
             }else{
                 throw new DbException("Unexpected error! No rows affected");
