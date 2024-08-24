@@ -42,5 +42,30 @@ public class Main {
 
         */
 
+
+        /*
+
+        //Realizando consultas via EntityManager
+
+        Pessoa p = em.find(Pessoa.class, 3);
+
+        System.out.println(p);
+
+         */
+
+        //Removendo dados com o EntityManager
+
+        Pessoa p_remove = em.find(Pessoa.class, 4);
+
+        em.getTransaction().begin();
+        em.remove(p_remove);
+        em.getTransaction().commit();
+
+        System.out.println("Registro removido!");
+
+
+        //Encerrando gerentes de entidades
+        em.close();
+        emf.close();
     }
 }
