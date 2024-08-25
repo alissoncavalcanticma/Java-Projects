@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController //Definindo como endpoint REST
 @RequestMapping(value = "/users") //mapeando para o endpoint /users
 public class UserResource {
 
     @GetMapping //Annotation para recurso de endpoint GET
     public ResponseEntity<User> findAll(){
 
+        //Criando Objeto de response mockado
         User u = new User(1L, "Alisson", "alisson@alisson.com", "818181818181", "123");
         //Definindo o response do endpoint
         return ResponseEntity.ok().body(u);
