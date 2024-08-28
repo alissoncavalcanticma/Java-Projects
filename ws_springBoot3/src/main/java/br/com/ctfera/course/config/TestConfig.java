@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 import java.util.Arrays;
 
 @Configuration //Definindo a class como do tipo configuração
-@Profile("test") //Definindoo perfil que será implementado com essa class //*Perfil "test" foi definido nas properties de test
+@Profile("test") //Definindo o perfil que será implementado com essa class //*Perfil "test" foi definido nas properties de test
 
 public class TestConfig implements CommandLineRunner { //implements CommandLineRunner é uma interface para execução de comandos na execução da aplicação
 
