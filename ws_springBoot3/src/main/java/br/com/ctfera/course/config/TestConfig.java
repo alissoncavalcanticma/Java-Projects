@@ -1,8 +1,10 @@
 package br.com.ctfera.course.config;
 
+import br.com.ctfera.course.entities.Category;
 import br.com.ctfera.course.entities.Order;
 import br.com.ctfera.course.entities.User;
 import br.com.ctfera.course.entities.enums.OrderStatus;
+import br.com.ctfera.course.repositories.CategoryRepository;
 import br.com.ctfera.course.repositories.OrderRepository;
 import br.com.ctfera.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,11 @@ public class TestConfig implements CommandLineRunner { //implements CommandLineR
     @Autowired
     private OrderRepository orderRepository;
 
+
+    //Setando injeção de dependência com CategoryRepository
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     //Método Run para execução de comandos na execução
     @Override
     public void run(String... args) throws Exception {
@@ -42,6 +49,12 @@ public class TestConfig implements CommandLineRunner { //implements CommandLineR
         //Usando o orderRepository para persistir os objetos no banco de dados
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        //Usando o categoryRepository para persistir os objetos no banco de dados
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
     }
 
