@@ -1,5 +1,6 @@
 package br.com.ctfera.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -21,6 +22,9 @@ public class User implements Serializable {
 
     private String password;
 
+    @JsonIgnore
+    //Annotation @JsonIgnore para evitar o loop infinito de associação de mão dupla,
+    //Pode ser colocado em qualquer dos lados, indicado para o lado associado.
     @OneToMany(mappedBy = "client") //1 para muitos (1 User para muitos pedidos) usando "mappedBy" para definir em que atributo está mapeada essa relação.
     private List<Order> orders = new ArrayList<>();
 

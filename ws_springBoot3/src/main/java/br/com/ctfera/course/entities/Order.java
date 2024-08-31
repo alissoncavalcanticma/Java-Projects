@@ -1,5 +1,7 @@
 package br.com.ctfera.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,9 +17,15 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //Annotattion @JsonFormat para definição de formatação
+    //Opção "shape = JsonFormat.Shape.STRING" para definir o Shape String
+    //Opção "pattern = "yyyy=MM-dd'T'HH:mm:ss'Z'"" para definir o formato da data
+    //Opção "timezone = "GMT"" para definir o timezone
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    @ManyToOne //Relação muitos para 1
+    @ManyToOne //Anottation de relação muitos para 1
     @JoinColumn(name = "client_id") //definição da coluna/campo de Join
     private User client;
 
