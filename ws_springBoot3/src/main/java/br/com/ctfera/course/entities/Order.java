@@ -1,5 +1,6 @@
 package br.com.ctfera.course.entities;
 
+import br.com.ctfera.course.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -25,15 +26,18 @@ public class Order implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
+    private OrderStatus orderStatus;
+
     @ManyToOne //Anottation de relação muitos para 1
     @JoinColumn(name = "client_id") //definição da coluna/campo de Join
     private User client;
 
     public Order(){}
 
-    public Order(Long id, Instant moment, User client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
+        this.orderStatus =  orderStatus;
         this.client = client;
     }
 
@@ -53,6 +57,14 @@ public class Order implements Serializable {
         this.moment = moment;
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public User getClient() {
         return client;
     }
@@ -66,14 +78,11 @@ public class Order implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Order order)) return false;
 
-        return getId().equals(order.getId()) && Objects.equals(getMoment(), order.getMoment()) && Objects.equals(getClient(), order.getClient());
+        return getId().equals(order.getId());
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + Objects.hashCode(getMoment());
-        result = 31 * result + Objects.hashCode(getClient());
-        return result;
+        return getId().hashCode();
     }
 }
