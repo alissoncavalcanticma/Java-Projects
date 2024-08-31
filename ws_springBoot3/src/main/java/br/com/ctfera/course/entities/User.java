@@ -21,7 +21,7 @@ public class User implements Serializable {
 
     private String password;
 
-    @OneToMany(mappedBy = "client") //1 para muitos (1 User para muitos pedidos) usando "mappedBy" para definir em que atributo está mapeado
+    @OneToMany(mappedBy = "client") //1 para muitos (1 User para muitos pedidos) usando "mappedBy" para definir em que atributo está mapeada essa relação.
     private List<Order> orders = new ArrayList<>();
 
     public User(){}
