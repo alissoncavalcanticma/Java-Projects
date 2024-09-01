@@ -1,5 +1,6 @@
 package br.com.ctfera.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,7 +18,9 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient //Usado para o JPA não interpretar esse Anottation.
+    //@Transient //Usado para o JPA não interpretar esse Anottation.
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories") //Muitos para muitos, mas a estrutura de relacionamento já foi criada na entidade Product
     private Set<Product> products = new HashSet<>();
 
     public Category(){}
