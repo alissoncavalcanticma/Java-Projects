@@ -3,6 +3,8 @@ package br.com.ctfera.course.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_category")
@@ -15,7 +17,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    //private List<Produtcs> products;
+    @Transient //Usado para o JPA não interpretar esse Anottation.
+    private Set<Product> products = new HashSet<>();
 
     public Category(){}
 
@@ -40,6 +43,10 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
@@ -52,4 +59,5 @@ public class Category implements Serializable {
     public int hashCode() {
         return getId().hashCode();
     }
+
 }

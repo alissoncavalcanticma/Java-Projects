@@ -24,7 +24,7 @@ public class User implements Serializable {
 
     @JsonIgnore
     //Annotation @JsonIgnore para evitar o loop infinito de associação de mão dupla,
-    //Pode ser colocado em qualquer dos lados, indicado para o lado associado.
+    //Pode ser colocado em qualquer dos lados, mas é indicado para o lado associado.
     @OneToMany(mappedBy = "client") //1 para muitos (1 User para muitos pedidos) usando "mappedBy" para definir em que atributo está mapeada essa relação.
     private List<Order> orders = new ArrayList<>();
 
