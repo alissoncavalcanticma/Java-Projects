@@ -1,5 +1,6 @@
 package br.com.ctfera.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -21,10 +22,16 @@ public class Product implements Serializable {
     private String imgUrl;
 
     //Não será usado o List, devido a necessidade de garantir a não duplicidade da categoria para o mesmo produto.
-    @Transient //Usado para o JPA não interpretar esse Anottation.
+    //@Transient //Usado para o JPA não interpretar esse Anottation.
     //private List<Category> categories;
     //Foi necessário instanciar logo o HashSet para garantir que não será criado com valor nulo.
-    //@OneToMany(mappedBy = "category_id")
+
+    @ManyToMany
+    @JoinTable(
+            name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     private Set<Category> categories = new HashSet<>();
 
     public Product(){}

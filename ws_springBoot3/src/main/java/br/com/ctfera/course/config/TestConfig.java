@@ -71,6 +71,17 @@ public class TestConfig implements CommandLineRunner { //implements CommandLineR
         //Usando o productRepository para persistir os objetos no banco de dados
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
+        //Associação muitos para muitos de entidade Product e Category
+
+        p1.getCategories().add(cat2);
+        p2.getCategories().add(cat1);
+        p2.getCategories().add(cat3);
+        p3.getCategories().add(cat3);
+        p4.getCategories().add(cat3);
+        p5.getCategories().add(cat2);
+
+        //Usando o productRepository para persistir asassociações dos objetos no banco de dados
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     }
 
 }
