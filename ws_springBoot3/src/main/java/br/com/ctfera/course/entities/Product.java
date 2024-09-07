@@ -34,6 +34,11 @@ public class Product implements Serializable {
     )
     private Set<Category> categories = new HashSet<>();
 
+    //Relacionamento com OrderItem
+    //Relacionameto OneToMany, 1 produto para vários items de pedido. Mapeamento apontando para o objeto id de OrderItem.
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product(){}
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {
@@ -87,6 +92,20 @@ public class Product implements Serializable {
     public Set<Category> getCategories() {
         return categories;
     }
+
+    //Método para retornar a lista de orders relacionadas ao produto, através do relacionamento com OrderItem
+    //Inserção da annotation @JsonIgnore para ajustar associação de mão dupla de Product com OrderItem
+    @JsonIgnore
+    public Set<Order> getOrders(){
+        Set<Order> set = new HashSet<>();
+
+        for (OrderItem x : items){
+            set.add(x.getOrder());
+        }
+        return set;
+
+    }
+
 
     @Override
     public final boolean equals(Object o) {
