@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -28,9 +30,14 @@ public class Order implements Serializable {
 
     private Integer orderStatus;
 
-    @ManyToOne //Anottation de relação muitos para 1
+    @ManyToOne //Annotation de relação muitos para 1
     @JoinColumn(name = "client_id") //definição da coluna/campo de Join
     private User client;
+
+    //Relacionamento de Order com OrderItem
+    //Annotation OneToMany (1 Order para muitos OrderItems, setando o id.order como mapeamento(objeto OrderItemPK de OrderItem))
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order(){}
 
@@ -73,6 +80,11 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    //function set para OrderItem
+    public Set<OrderItem> getItems(){
+        return items;
     }
 
     @Override

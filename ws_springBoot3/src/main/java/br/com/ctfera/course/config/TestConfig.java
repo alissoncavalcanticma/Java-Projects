@@ -1,9 +1,6 @@
 package br.com.ctfera.course.config;
 
-import br.com.ctfera.course.entities.Category;
-import br.com.ctfera.course.entities.Order;
-import br.com.ctfera.course.entities.Product;
-import br.com.ctfera.course.entities.User;
+import br.com.ctfera.course.entities.*;
 import br.com.ctfera.course.entities.enums.OrderStatus;
 import br.com.ctfera.course.repositories.CategoryRepository;
 import br.com.ctfera.course.repositories.OrderRepository;
@@ -82,6 +79,13 @@ public class TestConfig implements CommandLineRunner { //implements CommandLineR
 
         //Usando o productRepository para persistir asassociações dos objetos no banco de dados
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        //Instanciando OrderItems
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
     }
 
 }
