@@ -1,14 +1,8 @@
 package br.com.ctfera.course.config;
 
-import br.com.ctfera.course.entities.Category;
-import br.com.ctfera.course.entities.Order;
-import br.com.ctfera.course.entities.Product;
-import br.com.ctfera.course.entities.User;
+import br.com.ctfera.course.entities.*;
 import br.com.ctfera.course.entities.enums.OrderStatus;
-import br.com.ctfera.course.repositories.CategoryRepository;
-import br.com.ctfera.course.repositories.OrderRepository;
-import br.com.ctfera.course.repositories.ProductRepository;
-import br.com.ctfera.course.repositories.UserRepository;
+import br.com.ctfera.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +32,11 @@ public class TestConfig implements CommandLineRunner { //implements CommandLineR
     //Setando injeção de dependência com ProductRepository
     @Autowired
     private ProductRepository productRepository;
+
+
+    //Setando injeção de dependência com OrderItemRepository
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     //Método Run para execução de comandos na execução
     @Override
@@ -80,8 +79,18 @@ public class TestConfig implements CommandLineRunner { //implements CommandLineR
         p4.getCategories().add(cat3);
         p5.getCategories().add(cat2);
 
-        //Usando o productRepository para persistir asassociações dos objetos no banco de dados
+        //Usando o productRepository para persistir associações dos objetos no banco de dados
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        //Instanciando OrderItems
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        //Usando orderItemRepository para persistir associações dos objetos no banco de dados
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
     }
 
 }

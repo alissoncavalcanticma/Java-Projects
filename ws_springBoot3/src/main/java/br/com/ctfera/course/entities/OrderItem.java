@@ -1,6 +1,7 @@
 package br.com.ctfera.course.entities;
 
 import br.com.ctfera.course.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -15,7 +16,7 @@ public class OrderItem implements Serializable {
 
     //Chave criada através de classe de composição de chaves
     @EmbeddedId //Anottation referente à id composto
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;
     private Double price;
@@ -32,6 +33,8 @@ public class OrderItem implements Serializable {
     }
 
     //get e setter de Order criados manualmente
+    //Inserção da annotation @JsonIgnore para ajustar associação de mão dupla de Order com OrderItem
+    @JsonIgnore
     public Order getOrder(){
         return id.getOrder();
     }
