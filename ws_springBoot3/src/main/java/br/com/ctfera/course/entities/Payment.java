@@ -1,0 +1,61 @@
+package br.com.ctfera.course.entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+import java.time.Instant;
+
+@Entity
+@Table(name = "tb_payment") //313 - 3:57
+public class Payment {
+
+    private Long id;
+    private Instant moment;
+
+    private Order order;
+
+    public Payment(){}
+
+    public Payment(Long id, Instant moment, Order order) {
+        this.id = id;
+        this.moment = moment;
+        this.order = order;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Instant getMoment() {
+        return moment;
+    }
+
+    public void setMoment(Instant moment) {
+        this.moment = moment;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Payment payment)) return false;
+
+        return getId().equals(payment.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
+}
