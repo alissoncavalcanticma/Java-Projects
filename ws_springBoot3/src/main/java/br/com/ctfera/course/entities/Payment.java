@@ -1,5 +1,6 @@
 package br.com.ctfera.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -14,6 +15,7 @@ public class Payment {
     private Instant moment;
 
     //Classe dependente, só existe se houver pedido
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Order order;
