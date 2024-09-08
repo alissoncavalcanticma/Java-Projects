@@ -70,6 +70,11 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    //Calcular o sub total do item do pedido
+    public Double getSubTotal(){
+        return price * quantity;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;

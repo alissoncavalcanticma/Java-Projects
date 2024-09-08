@@ -100,6 +100,16 @@ public class Order implements Serializable {
         return items;
     }
 
+    //Método para obter total do pedido
+    public Double getTotal(){
+        double sum = 0.0;
+        for(OrderItem x : items){
+            sum += x.getSubTotal();
+        }
+        return sum;
+    }
+
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
