@@ -1,17 +1,21 @@
 package br.com.ctfera.course.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.Instant;
 
 @Entity
-@Table(name = "tb_payment") //313 - 3:57
+@Table(name = "tb_payment")
 public class Payment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Instant moment;
 
+    //Classe dependente, só existe se houver pedido
+    @OneToOne
+    @MapsId
     private Order order;
 
     public Payment(){}
