@@ -91,6 +91,13 @@ public class TestConfig implements CommandLineRunner { //implements CommandLineR
         //Usando orderItemRepository para persistir associações dos objetos no banco de dados
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
+        //Criando registro de pagamento para pedido o1 ( Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1); linha 50)
+        Payment pay1 = new Payment(null, Instant.parse("2024-09-10T01:59:56Z"), o1);
+        //Para inserir o registro de uma classe dependente, precisa ser feito pelo método set da classe independente, no caso Order.
+        o1.setPayment(pay1);
+        //Para salvar o registro usando o JPA, usamos o repository da classe independente novamente, que dará update no registro
+        orderRepository.save(o1);
+
     }
 
 }

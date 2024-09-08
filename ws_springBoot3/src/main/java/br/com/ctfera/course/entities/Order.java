@@ -39,6 +39,9 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
 
+    //Classe independente, pode existir pedido sem pagamento
+    //cascade = CascadeType.ALL é usado na Classe independente da relação, visa também manter a sincronia de status entre pedido e pagamento
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
     public Order(){}
