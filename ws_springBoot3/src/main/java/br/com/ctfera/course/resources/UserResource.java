@@ -48,7 +48,7 @@ public class UserResource {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         userService.delete(id);
-        //.noContent() retorna um response vazio 204;
+        //.noContent() retorna um response vazio 204; //Não concordo com o retorno
         return ResponseEntity.noContent().build();
     }
 
