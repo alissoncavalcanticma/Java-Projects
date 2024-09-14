@@ -2,6 +2,7 @@ package br.com.ctfera.course.services;
 
 import br.com.ctfera.course.entities.User;
 import br.com.ctfera.course.repositories.UserRepository;
+import br.com.ctfera.course.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ public class UserService {
 
    public User findById(Long id){
        Optional<User> obj = userRepository.findById(id);
-       return obj.get();
+
+       //return obj.get();
+       //Return agora usará lançamento de exceção personalizada, usando exp. lambda na cláusula orElseThrow()
+       return obj.orElseThrow(() -> new ResourceNotFoundException(id));
    }
 
    public User insert(User obj){
