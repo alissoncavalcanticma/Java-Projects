@@ -48,7 +48,7 @@ public class UserResource {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         userService.delete(id);
-        //.noContent() retorna um response vazio 204;
+        //.noContent() retorna um response vazio 204; //Não concordo com o retorno
         return ResponseEntity.noContent().build();
     }
 
@@ -57,6 +57,5 @@ public class UserResource {
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
         obj = userService.update(id, obj);
         return  ResponseEntity.ok().body(obj);
-
     }
 }
