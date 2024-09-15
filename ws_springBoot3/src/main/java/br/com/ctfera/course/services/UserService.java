@@ -3,8 +3,10 @@ package br.com.ctfera.course.services;
 import br.com.ctfera.course.entities.User;
 import br.com.ctfera.course.repositories.UserRepository;
 import br.com.ctfera.course.services.exceptions.ResourceNotFoundException;
+import ch.qos.logback.core.LogbackException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +35,12 @@ public class UserService {
    }
 
    public void delete(Long id){
-        userRepository.deleteById(id);
+        try{
+            userRepository.deleteById(id);
+        }catch(EmptyResultDataAccessException e){
+           e.printStackTrace();
+
+        }
    }
 
    public User update(Long id, User obj){
