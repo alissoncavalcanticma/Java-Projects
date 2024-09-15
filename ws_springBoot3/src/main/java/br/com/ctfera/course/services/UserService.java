@@ -5,6 +5,7 @@ import br.com.ctfera.course.repositories.UserRepository;
 import br.com.ctfera.course.services.exceptions.DatabaseException;
 import br.com.ctfera.course.services.exceptions.ResourceNotFoundException;
 import ch.qos.logback.core.LogbackException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -48,9 +49,17 @@ public class UserService {
    }
 
    public User update(Long id, User obj){
-        User entity = userRepository.getReferenceById(id);
-        updateData(entity, obj);
-        return userRepository.save(entity);
+       if(!userRepository.existsById(id)){
+           throw new ResourceNotFoundException(id);
+       }
+       try {
+           User entity = userRepository.getReferenceById(id);
+           updateData(entity, obj);
+           return userRepository.save(entity);
+       }catch(EntityNotFoundException e){
+           throw new ResourceNotFoundException(e);
+       }
+
    }
 
    //método auxiliar para atualizar o objeto User
